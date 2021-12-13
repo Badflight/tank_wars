@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"level1.json"
+        }
+    },
  "height":10,
  "infinite":false,
  "layers":[
@@ -66,6 +74,18 @@
                  "width":0,
                  "x":522,
                  "y":926
+                }, 
+                {
+                 "height":0,
+                 "id":4,
+                 "name":"enemy",
+                 "point":true,
+                 "rotation":0,
+                 "type":"enemySpawn",
+                 "visible":true,
+                 "width":0,
+                 "x":854,
+                 "y":350
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -74,7 +94,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":4,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",

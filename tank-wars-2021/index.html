@@ -6,6 +6,10 @@
     <link rel="shortcut icon" href="#" />
     <title>Tanks Wars David Heap</title>
     <script src="js/phaser.min.js"></script>
+    <script src="js/Utils.js"></script>
+    <script src="js/baseTank.js"></script>
+    <script src="js/playerTank.js"></script>
+    <script src="js/enemyTank.js"></script>
     <script src="js/TankScene.js"></script>
     <style type="text/css">
         body {
@@ -23,7 +27,7 @@
             physics: {
                 default: 'arcade',
                 arcade: {
-                    debug: false,
+                    debug: true,
                     gravity: {
                         y: 0
                     } // Top down game, so no gravity

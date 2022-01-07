@@ -49,6 +49,7 @@ class TankScene extends Phaser.Scene {
             }else if(actor.type == "enemySpawn"){
                 enemyObjects.push(actor)
             }
+            //boss Spawn
             else if(actor.type =="bossSpawn"){
                 console.log('boss')
                 this.createBoss(actor)
@@ -81,6 +82,7 @@ class TankScene extends Phaser.Scene {
         this.player = new PlayerTank(this,dataObject.x, dataObject.y, 'tank', 'tank1')
         this.player.enableCollision(this.destructLayer)
     }
+    //create boss function using enemy tank for test TO REMOVE OR CHANGE
     createBoss(dataObject){
         this.bossTank = new EnemyTank(this,dataObject.x, dataObject.y, 'boss', 'tank1')
     }

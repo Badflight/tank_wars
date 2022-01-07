@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"level1.json"
-        }
-    },
  "height":10,
  "infinite":false,
  "layers":[
@@ -86,6 +78,18 @@
                  "width":0,
                  "x":854,
                  "y":350
+                }, 
+                {
+                 "height":0,
+                 "id":5,
+                 "name":"boss",
+                 "point":true,
+                 "rotation":0,
+                 "type":"bossSpawn",
+                 "visible":true,
+                 "width":0,
+                 "x":1024,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -94,10 +98,10 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":5,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.2",
  "tileheight":64,
  "tilesets":[
         {
@@ -152,6 +156,6 @@
         }],
  "tilewidth":64,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":40
 }

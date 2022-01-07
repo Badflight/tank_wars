@@ -5,6 +5,8 @@ class TankScene extends Phaser.Scene {
     destructLayer
     /**@type {PlayerTank} */
     player
+    /**@type {EnemyTank} */
+    bossTank
     /**@type {Array.<EnemyTank>} */
     enemyTanks = []
     /**@type {Phaser.Physics.Arcade.Group} */
@@ -15,6 +17,7 @@ class TankScene extends Phaser.Scene {
         this.load.image('bullet', 'assets/tanks/bullet.png')
         this.load.atlas('tank', 'assets/tanks/tanks.png', 'assets/tanks/tanks.json')
         this.load.atlas('enemy', 'assets/tanks/enemy-tanks.png', 'assets/tanks/tanks.json')
+        this.load.atlas('boss','assets/tanks/boss-tanks.png', 'assets/tanks/tanks.json')
         this.load.image('tileset', 'assets/tanks/landscape-tileset.png')
         this.load.tilemapTiledJSON('level1', 'assets/level1.json')
     }
@@ -46,6 +49,10 @@ class TankScene extends Phaser.Scene {
             }else if(actor.type == "enemySpawn"){
                 enemyObjects.push(actor)
             }
+            else if(actor.type =="bossSpawn"){
+                console.log('boss')
+                this.createBoss(actor)
+            }
         }, this)
         this.cameras.main.startFollow(this.player.hull, true, 0.25, 0.25)
         for(let i = 0; i< enemyObjects.length; i++){
@@ -73,5 +80,8 @@ class TankScene extends Phaser.Scene {
     createPlayer(dataObject){
         this.player = new PlayerTank(this,dataObject.x, dataObject.y, 'tank', 'tank1')
         this.player.enableCollision(this.destructLayer)
+    }
+    createBoss(dataObject){
+        this.bossTank = new EnemyTank(this,dataObject.x, dataObject.y, 'boss', 'tank1')
     }
 }

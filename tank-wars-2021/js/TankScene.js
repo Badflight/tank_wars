@@ -176,6 +176,7 @@ class TankScene extends Phaser.Scene {
             }
         }
         this.healthText.setText('Damage:'+ this.player.damageCount*10+'%')
+        console.log(this.healthBar.width)
     }
     bulletHitEnemy(hull, bullet){
         /**@type {EnemyTank} */

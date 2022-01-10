@@ -59,14 +59,14 @@ class TankScene extends Phaser.Scene {
             actor = Utils.RetrieveCustomProperties(object)
             if(actor.type =="playerSpawn"){
                 this.createPlayer(actor)
-            }else if(actor.type == "enemySpawn"){
+            }else if(actor.type == "enemySpawn" ||actor.type =="bossSpawn"){
                 enemyObjects.push(actor)
             }
             //boss Spawn
-            else if(actor.type =="bossSpawn"){
-                console.log('boss')
-                this.createBoss(actor)
-            }
+            // else if(actor.type =="bossSpawn"){
+            //     console.log('boss')
+            //     this.createBoss(actor)
+            // }
         }, this)
         for(let i = 0; i< enemyObjects.length; i++){
             this.createEnemy(enemyObjects[i])
@@ -87,7 +87,7 @@ class TankScene extends Phaser.Scene {
         })
         //camera and UI
         this.cameras.main.startFollow(this.player.hull, true, 0.25, 0.25)
-        this.healthText = this.add.text(32,32,'Health:'+this.health,{
+        this.healthText = this.add.text(32,32,'Damage:'+this.player.damageCount*10+'%',{
             fontSize:'16px'
         }).setScrollFactor(0)
         this.fuelText = this.add.text(32,580,'fuel:'+this.fuel,{
@@ -97,6 +97,7 @@ class TankScene extends Phaser.Scene {
         this.physics.world.on('worldbounds', function(body){
             this.disposeOfBullet(body.gameObject)
         }, this)
+        
     }
     update(time, delta) {
         this.player.update()
@@ -110,9 +111,16 @@ class TankScene extends Phaser.Scene {
             console.log('f')
         }
         
+        
     }
     createEnemy(dataObject){
-        let enemyTank = new EnemyTank(this, dataObject.x, dataObject.y, 'enemy','tank1', this.player)
+        let enemyTank
+        if(dataObject.type == 'enemySpawn'){
+            enemyTank = new EnemyTank(this, dataObject.x, dataObject.y, 'enemy','tank1', this.player)
+        }else if(dataObject.type == 'bossSpawn'){
+            enemyTank = new BossTank(this, dataObject.x, dataObject.y, 'boss','tank1', this.player)
+        }
+        
         enemyTank.initMovement()
         enemyTank.enableCollision(this.destructLayer)
         enemyTank.setBullets(this.enemyBullets)
@@ -153,8 +161,21 @@ class TankScene extends Phaser.Scene {
             }
         }
     }
-    bulletHitPlayer(){
-        
+    bulletHitPlayer(hull,bullet){
+        this.disposeOfBullet(bullet)
+        this.player.damage();{
+            if(this.player.isDestroyed()){
+                this.input.enabled = false
+                this.enemyTanks = []
+                this.physics.pause()
+                let explosion = this.explosions.get(hull.x,hull.y)
+                if(explosion){
+                    this.activateExplosion(explosion)
+                    explosion.play('explode')
+                }
+            }
+        }
+        this.healthText.setText('Damage:'+ this.player.damageCount*10+'%')
     }
     bulletHitEnemy(hull, bullet){
         /**@type {EnemyTank} */
@@ -177,7 +198,7 @@ class TankScene extends Phaser.Scene {
                 explosion.on('animationcomplete', this.animComplete, this)
                 explosion.play('explode')
             }
-            if(enemy.isDestroyed){
+            if(enemy.isDestroyed()){
                 this.enemyTanks.splice(index, 1)
             }
         }
@@ -207,9 +228,9 @@ class TankScene extends Phaser.Scene {
         this.explosions.killAndHide(gameObject)
     }
     //create boss function using enemy tank for test TO REMOVE OR CHANGE
-    createBoss(dataObject){
-        this.bossTank = new EnemyTank(this,dataObject.x, dataObject.y, 'boss', 'tank1')
-    }
+    // createBoss(dataObject){
+    //     this.bossTank = new BossTank(this,dataObject.x, dataObject.y, 'boss', 'tank1')
+    // }
     //possible endgame
     endgame(){
         this.physics.pause()

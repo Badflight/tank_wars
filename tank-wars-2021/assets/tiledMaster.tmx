@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="10" tilewidth="64" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="6">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="40" height="10" tilewidth="64" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="8">
  <editorsettings>
   <export target="level1.json" format="json"/>
  </editorsettings>
@@ -58,16 +58,19 @@
   <object id="1" name="player" type="playerSpawn" x="558" y="470">
    <point/>
   </object>
-  <object id="2" name="enemy" type="enemySpawn" x="1480" y="500">
+  <object id="2" name="enemy" type="enemySpawn" x="714.667" y="301.333">
    <point/>
   </object>
-  <object id="3" x="522" y="926">
-   <point/>
-  </object>
-  <object id="4" name="enemy" type="enemySpawn" x="854" y="350">
+  <object id="4" name="enemy" type="enemySpawn" x="768.667" y="180.667">
    <point/>
   </object>
   <object id="5" name="boss" type="bossSpawn" x="1024" y="288">
+   <point/>
+  </object>
+  <object id="6" name="enemy" type="enemySpawn" x="869.333" y="209.333">
+   <point/>
+  </object>
+  <object id="7" name="enemy" type="enemySpawn" x="846.667" y="368">
    <point/>
   </object>
  </objectgroup>

@@ -29,12 +29,12 @@ class BaseTank {
     }
     setBullets(bullets) {
         this.bullets = bullets
-        
+
     }
     burn() {
         this.turret.setVisible(false)
         this.hull.setVelocity(0)
-        this.hull.body.immovalble = true
+        this.hull.body.imovalble = true
 
     }
     isDestroyed() {

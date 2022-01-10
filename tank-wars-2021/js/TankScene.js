@@ -17,8 +17,8 @@ class TankScene extends Phaser.Scene {
     /**@type {Phaser.GameObjects.Group} */
     explosions
     //PLAYER UI STUFF
-    /**@type {number} */
-    health = 100
+    /**@type {HealthBar} */
+    healthBar
     /**@type {number} */
     fuel = 100
     preload() {
@@ -97,15 +97,15 @@ class TankScene extends Phaser.Scene {
         this.physics.world.on('worldbounds', function(body){
             this.disposeOfBullet(body.gameObject)
         }, this)
+        //health bar that can use the damage 
+        this.healthBar = new HealthBar(this,100,200,this.player.damageMax,100)
+        console.log(this.healthBar)
         
     }
     update(time, delta) {
         this.player.update()
         for(let i = 0; i<this.enemyTanks.length;i++){
             this.enemyTanks[i].update(time,delta)
-        }
-        if (this.health <=0){
-            this.endgame()
         }
         if (Phaser.Input.Keyboard.JustDown(this.keyF)){
             console.log('f')

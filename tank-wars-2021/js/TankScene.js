@@ -13,6 +13,11 @@ class TankScene extends Phaser.Scene {
     bullets
     /**@type {Phaser.Physics.Arcade.Group} */
     enemyBullets
+    //PLAYER UI STUFF
+    /**@type {number} */
+    health = 100
+    /**@type {number} */
+    fuel = 100
     preload() {
         this.load.image('bullet', 'assets/tanks/bullet.png')
         this.load.atlas('tank', 'assets/tanks/tanks.png', 'assets/tanks/tanks.json')
@@ -31,6 +36,7 @@ class TankScene extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels)
         this.physics.world.setBounds(0,0,this.map.widthInPixels, this.map.heightInPixels)
         const objectLayer = this.map.getObjectLayer('objectLayer')
+        this.keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F)
         //bullet
         this.enemyBullets = this.physics.add.group({
             defaultKey:'bullet',
@@ -55,16 +61,30 @@ class TankScene extends Phaser.Scene {
                 this.createBoss(actor)
             }
         }, this)
-        this.cameras.main.startFollow(this.player.hull, true, 0.25, 0.25)
         for(let i = 0; i< enemyObjects.length; i++){
             this.createEnemy(enemyObjects[i])
         }
+        //camera and UI
+        this.cameras.main.startFollow(this.player.hull, true, 0.25, 0.25)
+        this.healthText = this.add.text(32,32,'Health:'+this.health,{
+            fontSize:'16px'
+        }).setScrollFactor(0)
+        this.fuelText = this.add.text(32,580,'fuel:'+this.fuel,{
+            fontSize:'16px'
+        }).setScrollFactor(0)
     }
     update(time, delta) {
         this.player.update()
         for(let i = 0; i<this.enemyTanks.length;i++){
             this.enemyTanks[i].update(time,delta)
         }
+        if (this.health <=0){
+            this.endgame()
+        }
+        if (Phaser.Input.Keyboard.JustDown(this.keyF)){
+            console.log('f')
+        }
+        
     }
     createEnemy(dataObject){
         let enemyTank = new EnemyTank(this, dataObject.x, dataObject.y, 'enemy','tank1', this.player)
@@ -85,5 +105,9 @@ class TankScene extends Phaser.Scene {
     //create boss function using enemy tank for test TO REMOVE OR CHANGE
     createBoss(dataObject){
         this.bossTank = new EnemyTank(this,dataObject.x, dataObject.y, 'boss', 'tank1')
+    }
+    //possible endgame
+    endgame(){
+        this.physics.pause()
     }
 }

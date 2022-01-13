@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"level1.json"
-        }
-    },
  "height":10,
  "infinite":false,
  "layers":[
@@ -60,8 +52,8 @@
                  "type":"enemySpawn",
                  "visible":true,
                  "width":0,
-                 "x":714.666666666667,
-                 "y":301.333333333333
+                 "x":1808,
+                 "y":280.666
                 }, 
                 {
                  "height":0,
@@ -72,8 +64,8 @@
                  "type":"enemySpawn",
                  "visible":true,
                  "width":0,
-                 "x":768.666666666667,
-                 "y":180.666666666667
+                 "x":1862,
+                 "y":160
                 }, 
                 {
                  "height":0,
@@ -84,8 +76,8 @@
                  "type":"bossSpawn",
                  "visible":true,
                  "width":0,
-                 "x":1024,
-                 "y":288
+                 "x":2117.333,
+                 "y":267.333
                 }, 
                 {
                  "height":0,
@@ -96,8 +88,8 @@
                  "type":"enemySpawn",
                  "visible":true,
                  "width":0,
-                 "x":869.333333333333,
-                 "y":209.333333333333
+                 "x":1962.666,
+                 "y":188.666
                 }, 
                 {
                  "height":0,
@@ -108,8 +100,8 @@
                  "type":"enemySpawn",
                  "visible":true,
                  "width":0,
-                 "x":846.666666666667,
-                 "y":368
+                 "x":1940,
+                 "y":347.333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -121,7 +113,7 @@
  "nextobjectid":8,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.2",
  "tileheight":64,
  "tilesets":[
         {
@@ -176,6 +168,6 @@
         }],
  "tilewidth":64,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":40
 }

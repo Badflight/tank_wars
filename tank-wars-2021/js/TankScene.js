@@ -19,8 +19,8 @@ class TankScene extends Phaser.Scene {
     //PLAYER UI STUFF
     /**@type {HealthBar} */
     healthBar
-    /**@type {number} */
-    fuel = 100
+    /**@type {HealthBar} */
+    fuelBar
     preload() {
         this.load.image('bullet', 'assets/tanks/bullet.png')
         this.load.atlas('tank', 'assets/tanks/tanks.png', 'assets/tanks/tanks.json')
@@ -90,7 +90,7 @@ class TankScene extends Phaser.Scene {
         this.healthText = this.add.text(32,32,'Damage:'+this.player.damageCount*10+'%',{
             fontSize:'16px'
         }).setScrollFactor(0)
-        this.fuelText = this.add.text(32,580,'fuel:'+this.fuel,{
+        this.fuelText = this.add.text(32,580,'fuel:'+this.player.fuel,{
             fontSize:'16px'
         }).setScrollFactor(0)
         this.input.on('pointerdown', this.tryShoot, this)
@@ -98,8 +98,10 @@ class TankScene extends Phaser.Scene {
             this.disposeOfBullet(body.gameObject)
         }, this)
         //health bar that can use the damage 
-        this.healthBar = new HealthBar(this,100,200,this.player.damageMax,100)
-        console.log(this.healthBar)
+        this.healthBar = new HealthBar(this,100,200,this.player.damageCount*20,50)
+        //this.fuelBar = new HealthBar(this,100,500, this.player.fuel/12,50)
+        //TEST FOR STUFF
+        console.log(this.player.fuel)
         
     }
     update(time, delta) {
@@ -110,8 +112,9 @@ class TankScene extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(this.keyF)){
             console.log('f')
         }
+        this.fuelText.setText('Fuel: '+this.player.fuel)
         
-        
+
     }
     createEnemy(dataObject){
         let enemyTank
@@ -177,6 +180,7 @@ class TankScene extends Phaser.Scene {
         }
         this.healthText.setText('Damage:'+ this.player.damageCount*10+'%')
         console.log(this.healthBar.width)
+        this.healthBar = new HealthBar(this,100,200,this.player.damageCount*20,50)
     }
     bulletHitEnemy(hull, bullet){
         /**@type {EnemyTank} */

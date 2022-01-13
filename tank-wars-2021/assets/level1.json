@@ -76,7 +76,7 @@
                  "type":"bossSpawn",
                  "visible":true,
                  "width":0,
-                 "x":2117.333,
+                 "x":2117.33,
                  "y":267.333
                 }, 
                 {
@@ -88,7 +88,7 @@
                  "type":"enemySpawn",
                  "visible":true,
                  "width":0,
-                 "x":1962.666,
+                 "x":1962.67,
                  "y":188.666
                 }, 
                 {
@@ -102,6 +102,30 @@
                  "width":0,
                  "x":1940,
                  "y":347.333
+                }, 
+                {
+                 "height":0,
+                 "id":8,
+                 "name":"fuel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"fuelSpawn",
+                 "visible":true,
+                 "width":0,
+                 "x":784,
+                 "y":384
+                }, 
+                {
+                 "height":0,
+                 "id":11,
+                 "name":"fuel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"fuelSpawn",
+                 "visible":true,
+                 "width":0,
+                 "x":912,
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -110,7 +134,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":8,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

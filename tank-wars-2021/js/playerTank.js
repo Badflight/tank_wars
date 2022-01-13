@@ -1,6 +1,6 @@
 class PlayerTank extends BaseTank{
     /**@type {number} */
-    fuel =1000
+    fuel =500
     /**@type {HealthBar} */
     fuelBar
     constructor(scene,x,y,texture,frame){
@@ -21,7 +21,7 @@ class PlayerTank extends BaseTank{
             if(this.currentSpeed< this.tankSpeed){
                 this.currentSpeed += 10
             }
-            this.fuel-=1
+            this.fuel-=0.1
         }else if(this.keys.s.isDown){
             if(this.currentSpeed> -this.tankSpeed){
                 this.currentSpeed -=10

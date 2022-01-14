@@ -12,6 +12,8 @@ class TankScene extends Phaser.Scene {
     /**@type {Array} */
     fuelObjects
     /**@type {Phaser.Physics.Arcade.Group} */
+    fuelObject
+    /**@type {Phaser.Physics.Arcade.Group} */
     bullets
     /**@type {Phaser.Physics.Arcade.Group} */
     enemyBullets
@@ -152,7 +154,7 @@ class TankScene extends Phaser.Scene {
         this.player.enableCollision(this.destructLayer)
     }
     createFuel(dataObject){
-        
+        this.add.image(dataObject.x,dataObject.y,'fuel')
     }
     tryShoot(pointer){
         /**@type {Phaser.Physics.Arcade.Sprite} */

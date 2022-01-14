@@ -112,20 +112,20 @@
                  "type":"fuelSpawn",
                  "visible":true,
                  "width":0,
-                 "x":784,
-                 "y":384
+                 "x":816,
+                 "y":240
                 }, 
                 {
                  "height":0,
-                 "id":11,
-                 "name":"fuel",
+                 "id":12,
+                 "name":"health",
                  "point":true,
                  "rotation":0,
-                 "type":"fuelSpawn",
+                 "type":"healthSpawn",
                  "visible":true,
                  "width":0,
-                 "x":912,
-                 "y":336
+                 "x":768,
+                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -134,7 +134,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":12,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

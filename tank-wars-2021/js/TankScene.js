@@ -11,6 +11,8 @@ class TankScene extends Phaser.Scene {
     enemyTanks = []
     /**@type {Array} */
     fuelObjects
+    /**@type {Array} */
+    healthObjects
     /**@type {Phaser.Physics.Arcade.Group} */
     fuelObject
     /**@type {Phaser.Physics.Arcade.Group} */
@@ -32,6 +34,7 @@ class TankScene extends Phaser.Scene {
         this.load.atlas('boss','assets/tanks/boss-tanks.png', 'assets/tanks/tanks.json')
         this.load.image('tileset', 'assets/tanks/landscape-tileset.png')
         this.load.image('fuel','assets/fuel_can.png')
+        this.load.image('health','assets/health_pack.png')
         this.load.tilemapTiledJSON('level1', 'assets/level1.json')
         this.load.spritesheet('explosion','assets/tanks/explosion.png',{
             frameWidth:64,
@@ -60,6 +63,7 @@ class TankScene extends Phaser.Scene {
         })
         let enemyObjects =[]
         let fuelObjects = []
+        let healthObjects = []
         let actor
         objectLayer.objects.forEach(function(object){
             actor = Utils.RetrieveCustomProperties(object)
@@ -75,7 +79,9 @@ class TankScene extends Phaser.Scene {
             // }
             else if(actor.type == "fuelSpawn"){
                 fuelObjects.push(actor)
-                console.log(fuelObjects)
+            }
+            else if(actor.type=="healthSpawn"){
+                healthObjects.push(actor)
             }
         }, this)
         for(let i = 0; i< enemyObjects.length; i++){
@@ -83,6 +89,9 @@ class TankScene extends Phaser.Scene {
         }
         for(let i=0; i< fuelObjects.length; i++){
             this.createFuel(fuelObjects[i])
+        }
+        for(let i =0;i<healthObjects.length;i++){
+            this.createHealth(healthObjects[i])
         }
         //create explosions
         this.explosions = this.add.group({
@@ -111,11 +120,9 @@ class TankScene extends Phaser.Scene {
             this.disposeOfBullet(body.gameObject)
         }, this)
         //health bar that can use the damage 
-        this.healthBar = new HealthBar(this,32,50,this.player.damageCount*20,50, 0xff0000)
+        this.healthBar = new HealthBar(this,32,50,this.player.damageCount*150,50, 0xff0000)
         this.fuelBar = new HealthBar(this,32,500, this.player.fuel/5,50,0xffae00)
-        //TEST FOR STUFF
-        console.log(this.player.fuel)
-        console.log(Phaser.Math.FloorTo(this.player.fuel))
+        
         
     }
     update(time, delta) {
@@ -125,6 +132,10 @@ class TankScene extends Phaser.Scene {
         }
         if (Phaser.Input.Keyboard.JustDown(this.keyF)){
             console.log('f')
+        }
+        //checks fuel
+        if(this.player.fuel<=0){
+            this.outOfFuel()
         }
         this.fuelText.setText('Fuel: '+Phaser.Math.FloorTo(this.player.fuel))
         this.fuelBar.draw(this.player.fuel/2)
@@ -148,22 +159,35 @@ class TankScene extends Phaser.Scene {
                 this.physics.add.collider(enemyTank.hull,this.enemyTanks[i].hull)
             }
         }
-        console.log(enemyTank)
     }
     createPlayer(dataObject){
         this.player = new PlayerTank(this,dataObject.x, dataObject.y, 'tank', 'tank1')
         this.player.enableCollision(this.destructLayer)
     }
+    //fuel creattoin and other functions
     createFuel(dataObject){
         let fuelCan
         fuelCan = new FuelPickup(this,dataObject.x,dataObject.y,'fuel')
         this.physics.add.overlap(fuelCan.pickUp,this.player.hull,this.fuelFunction,null,this)
-        console.log(fuelCan)
     }
     fuelFunction(fuelCan){
         fuelCan.disableBody(true,true)
         this.player.fuelUp()
-        console.log('fuel Col')
+    }
+    outOfFuel(){
+        this.physics.pause()
+        this.player.fuel=0
+    }
+    //health pickup
+    createHealth(dataObject){
+        let healthPack
+        healthPack = new FuelPickup(this,dataObject.x,dataObject.y,'health')
+        this.physics.add.overlap(healthPack.pickUp,this.player.hull,this.healthUp,null,this)
+    }
+    healthUp(healthPack){
+        this.healthBar.draw()
+        healthPack.disableBody(true,true)
+        this.player.damageDown()
     }
     tryShoot(pointer){
         /**@type {Phaser.Physics.Arcade.Sprite} */
@@ -207,7 +231,7 @@ class TankScene extends Phaser.Scene {
         this.healthText.setText('Damage:'+ this.player.damageCount*10+'%')
         console.log(this.healthBar.width)
         //this.healthBar = new HealthBar(this,100,200,this.player.damageCount*20,50)
-        this.healthBar.draw(this.player.damageCount*10)
+        this.healthBar.draw(this.player.damageCount*25)
     }
     bulletHitEnemy(hull, bullet){
         /**@type {EnemyTank} */

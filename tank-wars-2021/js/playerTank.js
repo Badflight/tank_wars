@@ -26,6 +26,7 @@ class PlayerTank extends BaseTank{
             if(this.currentSpeed> -this.tankSpeed){
                 this.currentSpeed -=10
             }
+            this.fuel-=0.1
         }
         else{
             this.currentSpeed *= 0.5
@@ -58,6 +59,19 @@ class PlayerTank extends BaseTank{
     }
     fuelUp(){
         console.log('fuelUp')
-        this.fuel += 1000
+        this.fuel +=100
+        if(this.fuel >=500){
+            this.fuel = 500
+        }
+        else{
+            
+        }
+        
+    }
+    damageDown(){
+        this.damageCount -=2
+        if(this.damageCount <=0){
+            this.damageCount =0
+        }
     }
 }

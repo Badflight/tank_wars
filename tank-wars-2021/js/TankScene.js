@@ -111,7 +111,7 @@ class TankScene extends Phaser.Scene {
             this.disposeOfBullet(body.gameObject)
         }, this)
         //health bar that can use the damage 
-        this.healthBar = new HealthBar(this,32,200,this.player.damageCount*20,50, 0xff0000)
+        this.healthBar = new HealthBar(this,32,50,this.player.damageCount*20,50, 0xff0000)
         this.fuelBar = new HealthBar(this,32,500, this.player.fuel/5,50,0xffae00)
         //TEST FOR STUFF
         console.log(this.player.fuel)

@@ -148,13 +148,22 @@ class TankScene extends Phaser.Scene {
                 this.physics.add.collider(enemyTank.hull,this.enemyTanks[i].hull)
             }
         }
+        console.log(enemyTank)
     }
     createPlayer(dataObject){
         this.player = new PlayerTank(this,dataObject.x, dataObject.y, 'tank', 'tank1')
         this.player.enableCollision(this.destructLayer)
     }
     createFuel(dataObject){
-        this.add.image(dataObject.x,dataObject.y,'fuel')
+        let fuelCan
+        fuelCan = new FuelPickup(this,dataObject.x,dataObject.y,'fuel')
+        this.physics.add.overlap(fuelCan.pickUp,this.player.hull,this.fuelFunction,null,this)
+        console.log(fuelCan)
+    }
+    fuelFunction(fuelCan){
+        fuelCan.disableBody(true,true)
+        this.player.fuelUp()
+        console.log('fuel Col')
     }
     tryShoot(pointer){
         /**@type {Phaser.Physics.Arcade.Sprite} */

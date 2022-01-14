@@ -56,4 +56,8 @@ class PlayerTank extends BaseTank{
             this.burn()
         }
     }
+    fuelUp(){
+        console.log('fuelUp')
+        this.fuel += 1000
+    }
 }

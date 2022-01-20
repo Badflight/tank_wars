@@ -79,10 +79,10 @@
   <object id="12" name="health" type="healthSpawn" x="768" y="400">
    <point/>
   </object>
-  <object id="16" name="enemy2" type="enemy2Spawn" x="1072" y="256">
+  <object id="16" name="enemy2" type="enemy2Spawn" x="928" y="240">
    <point/>
   </object>
-  <object id="17" name="enemy3" type="enemy3Spawn" x="1200" y="352">
+  <object id="17" name="enemy3" type="enemy3Spawn" x="864" y="336">
    <point/>
   </object>
  </objectgroup>

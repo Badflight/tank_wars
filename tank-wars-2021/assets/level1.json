@@ -136,8 +136,20 @@
                  "type":"enemy2Spawn",
                  "visible":true,
                  "width":0,
-                 "x":736,
-                 "y":584.666
+                 "x":928,
+                 "y":240
+                }, 
+                {
+                 "height":0,
+                 "id":17,
+                 "name":"enemy3",
+                 "point":true,
+                 "rotation":0,
+                 "type":"enemy3Spawn",
+                 "visible":true,
+                 "width":0,
+                 "x":864,
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -146,7 +158,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":17,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

@@ -31,6 +31,8 @@ class TankScene extends Phaser.Scene {
         this.load.image('bullet', 'assets/tanks/bullet.png')
         this.load.atlas('tank', 'assets/tanks/tanks.png', 'assets/tanks/tanks.json')
         this.load.atlas('enemy', 'assets/tanks/enemy-tanks.png', 'assets/tanks/tanks.json')
+        this.load.atlas('enemy2','assets/tanks/enemy-tanks2.png','assets/tanks/tanks.json')
+        this.load.atlas('enemy3','assets/tanks/enemy-tanks3.png','assets/tanks/tanks.json')
         this.load.atlas('boss','assets/tanks/boss-tanks.png', 'assets/tanks/tanks.json')
         this.load.image('tileset', 'assets/tanks/landscape-tileset.png')
         this.load.image('fuel','assets/fuel_can.png')
@@ -151,9 +153,9 @@ class TankScene extends Phaser.Scene {
         }else if(dataObject.type == 'bossSpawn'){
             enemyTank = new BossTank(this, dataObject.x, dataObject.y, 'boss','tank1', this.player)
         }else if(dataObject.type=='enemy2Spawn'){
-            enemyTank = new EnemyTank(this,dataObject.x, dataObject.y, 'enemy', 'tank1',this.player)
+            enemyTank = new EnemyTank2(this,dataObject.x, dataObject.y, 'enemy2', 'tank1',this.player)
         }else if(dataObject.type=='enemy3Spawn'){
-            enemyTank = new EnemyTank(this,dataObject.x, dataObject.y, 'enemy', 'tank1',this.player)
+            enemyTank = new EnemyTank3(this,dataObject.x, dataObject.y, 'enemy3', 'tank1',this.player)
         }
         
         enemyTank.initMovement()

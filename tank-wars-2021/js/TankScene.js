@@ -72,6 +72,9 @@ class TankScene extends Phaser.Scene {
             }else if(actor.type == "enemySpawn" ||actor.type =="bossSpawn"){
                 enemyObjects.push(actor)
             }
+            else if(actor.type=="enemy2Spawn"||actor.type=="enemy3Spawn"){
+                enemyObjects.push(actor)
+            }
             //boss Spawn
             // else if(actor.type =="bossSpawn"){
             //     console.log('boss')
@@ -147,6 +150,10 @@ class TankScene extends Phaser.Scene {
             enemyTank = new EnemyTank(this, dataObject.x, dataObject.y, 'enemy','tank1', this.player)
         }else if(dataObject.type == 'bossSpawn'){
             enemyTank = new BossTank(this, dataObject.x, dataObject.y, 'boss','tank1', this.player)
+        }else if(dataObject.type=='enemy2Spawn'){
+            enemyTank = new EnemyTank(this,dataObject.x, dataObject.y, 'enemy', 'tank1',this.player)
+        }else if(dataObject.type=='enemy3Spawn'){
+            enemyTank = new EnemyTank(this,dataObject.x, dataObject.y, 'enemy', 'tank1',this.player)
         }
         
         enemyTank.initMovement()

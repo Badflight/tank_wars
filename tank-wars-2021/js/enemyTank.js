@@ -32,6 +32,7 @@ class EnemyTank extends BaseTank {
     damage(){
         console.log('damage')
         this.damageCount++
+        console.log(this.damageCount)
         if(this.damageCount >=this.damageMax){
             this.turret.destroy()
             this.hull.destroy()
